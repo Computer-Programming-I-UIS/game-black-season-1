@@ -1,1 +1,25 @@
+ int maxImages = 3;
+int imageIndex = 0;
+PImage [] images = new PImage[maxImages];
+int maximoimagenes = 3;
+int primera = 0;
+PImage [] imagenes = new PImage[maximoimagenes];
 
+
+void setup(){
+  size(500,500);
+for(int i = 0; i < images.length; i++){images[i] = loadImage("policia_" + i + ".png");
+for(int a = 0; a < images.length; a++){imagenes[a] = loadImage("personaje_" + a + ".png");
+}
+
+}
+
+frameRate(10);
+}
+void draw(){
+ background(0);
+ image(images[imageIndex], width/2,height/2 );
+ imageIndex = (imageIndex+1)%images.length; 
+ image(imagenes[primera], 0,0 );
+ primera = (primera+1)%imagenes.length; 
+}
