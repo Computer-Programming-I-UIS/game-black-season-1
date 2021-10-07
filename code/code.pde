@@ -214,6 +214,12 @@ void seleccionar(){
 //----------------------------------------- 
 void instruction(){
    background(0,255,0);
+   textSize(25);
+   fill(0);
+   text(("Instrucciones:"),10,25);
+   textSize(15);
+   text(("*Usa las flechas para moverte (una a la vez)\n*Escapa del laberinto y recolecta la mayor cantidad de monedas\n*No toques las paredes o moriras\n*Evita el policia."),10,50);
+   
     if (keyPressed){
     if(key == 'M' || key == 'm'){      
      modo = "MENU";
