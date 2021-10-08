@@ -11,13 +11,10 @@ codigo
 
 Se hace uso de la librería de sonido minim, para poder instalarla siga los siguietes pasos:
 
-- 1. Abra el proyecto en Proccesing
-
-- 2. Sketch/Importar Bibliotecas/Añadir Bibiloteca
-
-- 3. Digite "Minim" en el buscador
-
-- 4. Install
+1. Abra el proyecto en Proccesing
+2. Sketch/Importar Bibliotecas/Añadir Bibiloteca
+3. Digite "Minim" en el buscador
+4. Install
 
 
 ## Capturas de pantalla
