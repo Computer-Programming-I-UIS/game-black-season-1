@@ -1,28 +1,26 @@
 # Black Season
 
-Black season es un juego de arcade donde el objetivo principal es recolectar la totalidad de las monedas sin ser atrapado o electrocutado , para lograrlo debe esquivar a los vigilantes de turno y mantenerse alejado de las paredes electrificadas.
+Black season es un juego de arcade donde el objetivo principal es recolectar la totalidad de las monedas sin ser atrapado o electrocutado, para lograrlo debe esquivar a los vigilantes de turno y mantenerse alejado de las paredes electrificadas.
 
-gameplay
+##gameplay
 
 
-Autores
-* Santiago Vargas 
-* Duvan Rodriguez
+
 
 codigo
 
 Se hace uso de la librería de sonido minim, para poder instalarla siga los siguietes pasos:
 
-1 Abra el proyecto en Proccesing
+- 1. Abra el proyecto en Proccesing
 
-2 Sketch/Importar Bibliotecas/Añadir Bibiloteca
+- 2. Sketch/Importar Bibliotecas/Añadir Bibiloteca
 
-3 Digite "Minim" en el buscador
+- 3. Digite "Minim" en el buscador
 
-4 Install
+- 4. Install
 
 
-capturas de pantalla
+## Capturas de pantalla
 
 
 
@@ -34,12 +32,17 @@ capturas de pantalla
 caracteristicas principales
 
 
-* juego arcade
+* Juego arcade
 
-* movimiento del personaje usando las teclas: UP , DOWN , LEFT , RIGHT
+* Movimiento del personaje usando las teclas: UP , DOWN , LEFT , RIGHT
 
+## Autores
+* Santiago Vargas 
+* Duvan Rodriguez
 
-Sonidos
+## Crédtos
+
+### Sonidos:
 
 * TELL / SOUND EFFECTS https://youtu.be/7wfvXCVgPPA
 * Sound Edit https://youtu.be/KQ0rGCJAEC0
