@@ -10,6 +10,7 @@ import ddf.minim.ugens.*;
 Minim minim;
 AudioSample bombo;
 AudioSample moneda;
+AudioPlayer ganar;
 
 
 
@@ -82,6 +83,7 @@ void setup(){
 minim = new Minim(this);
 bombo = minim.loadSample("electro.mp3");
 moneda = minim.loadSample("sonmoneda.mp3");
+ganar = minim.loadFile("win.mp3");
 //********* sonido electrocutar
   
    playerX= width/2;
@@ -285,7 +287,7 @@ void lose(){
    fill(0);
    textSize(50);
    text("YOU WIN", width/2,height/2);
-   textSize(18);
+   textSize(18);ganar.play();// auido de victoria
    text("Pulsa m para regresar al menú", width/2, height/2);
     if (keyPressed){
     if(key == 'M' || key == 'm'){      
