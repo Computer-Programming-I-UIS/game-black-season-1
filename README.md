@@ -34,7 +34,7 @@ Para el videojuego se hace uso de la librería de sonido minim, para poder insta
 Para mayores de 10 años
 
 ## Autores
-* Santiago Vargas 
+* Santiago Vargas 2200537
 * Duvan Rodriguez
 
 ## Créditos
