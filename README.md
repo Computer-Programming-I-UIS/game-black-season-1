@@ -1,11 +1,8 @@
 # Black Season
 
-Black season es un juego de arcade donde el objetivo principal es recolectar la totalidad de las monedas sin ser atrapado o electrocutado, para lograrlo debe esquivar a los vigilantes de turno y mantenerse alejado de las paredes electrificadas.
+Black season es un juego de arcade donde el objetivo principal es recolectar la totalidad de las monedas y encontrar la salida del mapa sin ser atrapado o electrocutado, debes esquivar a los vigilantes de turno y mantenerte alejado de las paredes electrificadas. ¿podrás lograrlo?
 
 ## Gameplay
-
-
-
 
 codigo
 
