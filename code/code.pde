@@ -1,3 +1,19 @@
+// importar biblioteca minim
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
+//audio
+Minim minim;
+AudioSample bombo;
+AudioSample moneda;
+
+
+
+
 ArrayList<Dinero> bolsas = new ArrayList<Dinero>();
 float playerX;//Posición jugador
 float playerY;
@@ -61,6 +77,12 @@ color Color3;
 void setup(){
   size(680,600);
   ellipseMode(RADIUS);
+  
+  //******** sonido electrocutar  
+minim = new Minim(this);
+bombo = minim.loadSample("electro.mp3");
+moneda = minim.loadSample("sonmoneda.mp3");
+//********* sonido electrocutar
   
    playerX= width/2;
    playerY= height/2;
@@ -285,7 +307,7 @@ void dinero(){
   Dinero Di = (Dinero) bolsas.get(i);
   Di.dibujar();
   if(dist(x,y, Di.bx, Di.by)<c_a/2+radiob){//distancia entre dos puntos
-    bolsas.remove(i);
+    bolsas.remove(i);moneda.trigger();// auido de recoleccion
   }
  }
   
@@ -397,7 +419,7 @@ void colisionar(){
 
   vel=0;
   fill(255,0,0);
-  textMode(CENTER);
+  textMode(CENTER);bombo.trigger();// auido de electrocucion
   text("YOU LOSE", width/2,width/2);
   gameover= true;
   modo= "PERDER";//Insertar animación Choque electrico....
