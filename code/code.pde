@@ -1,3 +1,19 @@
+/*------------------------------------
+Videojuego: Black Season
+
+Descripción: Black Season es un videojuego arcade que consta de llegar a la parte derecha del mapa o salida
+evitando chocar las paredes ya que se encuentran electrificadas. De igual forma debe evitar a su enemigo que se
+encuentra moviendose como un vigilante.
+
+Navegue por el menú seleccionando las opciones dando clic, y para devolverse, pulse 'm'. 
+          
+Autores: Santiago Vargas
+         Duvan Rodriguez
+
+--------------------------------------*/
+
+
+
 // importar biblioteca minim
 import ddf.minim.*;
 import ddf.minim.analysis.*;
