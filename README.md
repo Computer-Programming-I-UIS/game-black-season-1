@@ -37,7 +37,7 @@ Para mayores de 10 años
 * Santiago Vargas 
 * Duvan Rodriguez
 
-## Crédtos
+## Créditos
 
 ### Sonidos:
 
