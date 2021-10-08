@@ -127,8 +127,8 @@ for(int a = 0; a < imagenes.length; a++)imagenes[a] = loadImage("personaje_" + a
 x= 20 ;//Posicion para personaje
 y= 220 ;
 
-ex= width /2;//Posición para enemigo
-ey = height/2; 
+ex= 540;//Posición para enemigo
+ey = 140; 
 frameRate(20);
 
 
@@ -235,7 +235,7 @@ void seleccionar(){
     }
  }
  
-//----------------------------------------- 
+//INTRUCCIONES DEL JUEGO---------------------------------------- 
 void instruction(){
    background(0,255,0);
    textSize(25);
@@ -254,7 +254,7 @@ void instruction(){
     }
     
  }
-//-----------------------------------------
+//MODO PERDER-----------------------------------------
 void lose(){
   background(255,0,0);
   textSize(50);
@@ -283,12 +283,12 @@ void lose(){
 }
 //MODO GANAR----------------------------------------- 
  void win(){//Inserte celebración
-   background(0,70,255);
+   background(#24D1FF);
    fill(0);
    textSize(50);
    text("YOU WIN", width/2,height/2);
    textSize(18);ganar.play();// auido de victoria
-   text("Pulsa m para regresar al menú", width/2, height/2);
+   text("Pulsa m para regresar al menú", width/2, height/2+100);
     if (keyPressed){
     if(key == 'M' || key == 'm'){      
      modo = "MENU";
@@ -327,10 +327,10 @@ void keyPressed(){//Movimiento player
  void enemigo(){
    image(images[imageIndex], ex, ey);//policia
    ex+=vel_e;//mover
-   if(ex< width/2){
+   if(ex< 540){
    imageIndex = (imageIndex+1)%images.length; 
 image(images[imageIndex], ex,ey);vel_e*=-1;
-   }else if (ex >width/2+200){
+   }else if (ex >620){
      imageIndex = (imageIndex+1)%images.length; 
 image(images[imageIndex], ex,ey);vel_e*=-1;
    }
