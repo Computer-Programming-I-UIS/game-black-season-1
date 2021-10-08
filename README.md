@@ -29,6 +29,10 @@ Para el videojuego se hace uso de la librería de sonido minim, para poder insta
 
 * Movimiento del personaje usando las teclas: UP , DOWN , LEFT , RIGHT
 
+## Clasificación:
+
+Para mayores de 10 años
+
 ## Autores
 * Santiago Vargas 
 * Duvan Rodriguez
@@ -41,5 +45,7 @@ Para el videojuego se hace uso de la librería de sonido minim, para poder insta
 * TELL / SOUND EFFECTS https://youtu.be/7wfvXCVgPPA
 * Sound Edit https://youtu.be/KQ0rGCJAEC0
 * The girl of the super sounds https://youtu.be/MwxYUgC-rUg
+
+
 
 
