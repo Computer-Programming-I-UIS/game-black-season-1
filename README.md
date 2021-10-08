@@ -29,7 +29,7 @@ Se hace uso de la librería de sonido minim, para poder instalarla siga los sigu
 ![image](https://user-images.githubusercontent.com/90475407/136490447-9b417c5f-259f-4393-8627-d4d7804b3ad9.png)
 
 
-caracteristicas principales
+## Caracteristicas principales
 
 
 * Juego arcade
