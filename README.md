@@ -4,7 +4,7 @@ Black season es un juego de arcade donde el objetivo principal es recolectar la 
 
 ## Gameplay
 
-codigo
+## Instrucciones
 
 Se hace uso de la librería de sonido minim, para poder instalarla siga los siguietes pasos:
 
@@ -37,6 +37,7 @@ Se hace uso de la librería de sonido minim, para poder instalarla siga los sigu
 ## Crédtos
 
 ### Sonidos:
+
 
 * TELL / SOUND EFFECTS https://youtu.be/7wfvXCVgPPA
 * Sound Edit https://youtu.be/KQ0rGCJAEC0
