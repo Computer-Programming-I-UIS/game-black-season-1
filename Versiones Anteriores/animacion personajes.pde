@@ -1,3 +1,5 @@
+// uitlizar los frames arpersonaje_ y abpersonaje_
+
 int x;
 int y;
 int maxImages = 3;
