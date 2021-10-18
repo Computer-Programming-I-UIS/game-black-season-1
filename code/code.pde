@@ -16,11 +16,7 @@ Autores: Santiago Vargas
 
 // importar biblioteca minim
 import ddf.minim.*;
-import ddf.minim.analysis.*;
-import ddf.minim.effects.*;
-import ddf.minim.signals.*;
-import ddf.minim.spi.*;
-import ddf.minim.ugens.*;
+
 
 //audio
 Minim minim;
@@ -63,6 +59,10 @@ PImage [] images = new PImage[maxImages];
 int maximoimagenes = 3;
 int primera = 0;
 PImage [] imagenes = new PImage[maximoimagenes];
+int bajando = 0;
+PImage[] bajimage = new PImage[maxImages];
+int sub= 0;
+PImage [] arimage = new PImage[maxImages];
 
 int vel=8;
 int vel_e=10;
@@ -70,8 +70,9 @@ int r=100;
 //radio enemigo
 int re = 30; 
 //radio posicion inicial capucho, ancho x alto
-int c_a=20;
-int c_h = 20;
+int c_a=25;
+int c_h = 25;
+int rp = 25;
 
 //--------------------------------------------------------------------------------------
 String modo;
@@ -90,7 +91,13 @@ int cc;
 color Color1;
 color Color2;
 color Color3;
+color Color4;
 //-------------------------------------------
+
+PImage jugar;
+PImage jugar2;
+
+
 void setup(){
   size(680,600);
   ellipseMode(RADIUS);
@@ -104,33 +111,8 @@ ganar = minim.loadFile("win.mp3");
   
    playerX= width/2;
    playerY= height/2;
-
-  p[0] = new Pared(0,0,40,200);
-  p[1]= new Pared(0,240,40,360);
-  p[2] = new Pared(0,height-40,width,40);
-  p[3] = new Pared(0,0,width,40);
-  p[4] = new Pared(width-40,0,40,height-120);
-  p[5]= new Pared(0,160,160,40);
-  p[6] = new Pared(120,200,40,240);
-  p[7] = new Pared(40,360,40,40);
-  p[8] = new Pared(80,480,40,80);
-  p[9]= new Pared(160,360,200,40);
-  p[10] = new Pared(280,400,40,80);
-  p[11] = new Pared(200,440,120,40);
-  p[12] = new Pared(240,520,40,40);
-  p[13] = new Pared(80,80,320,40);
-  p[14] = new Pared(360,440,160,40);
-  p[15] = new Pared(480,480,40,80);
-  p[16] = new Pared(360,480,40,40);
-  p[17] = new Pared(200,120,40,200);
-  p[18] = new Pared(240,240,320,40);
-  p[19] = new Pared(400,320,40,120);
-  p[20] = new Pared(480,40,40,160);
-  p[21] = new Pared(280,160,200,40);
-  p[22] = new Pared(320,280,40,40);
-  p[23] = new Pared(560,160,40,400);
-  p[24] = new Pared(560,80,40,40);
-  p[25] = new Pared(480,280,40,120);
+  mapa();
+  
   /*p[26] = new Pared(0,0,0,0);
   p[27] = new Pared(0,0,0,0);
   p[28] = new Pared(0,0,0,0);*/
@@ -139,7 +121,10 @@ ganar = minim.loadFile("win.mp3");
 //Con Sprite--------------------------------------------------------------------------------------
 for(int i = 0; i < images.length; i++)images[i] = loadImage("policia_" + i + ".png");
 for(int a = 0; a < imagenes.length; a++)imagenes[a] = loadImage("personaje_" + a + ".png");
-
+for(int i =0; i < bajimage.length; i++)bajimage[i]=loadImage("abpersonaje_" + i +".png");
+for(int i =0; i < arimage.length; i++)arimage[i]=loadImage("arpersonaje_" + i +".png");
+jugar = loadImage("jugar.png");
+jugar2 = loadImage("jugar2.png");
 x= 20 ;//Posicion para personaje
 y= 220 ;
 
@@ -162,18 +147,15 @@ void draw(){
  switch(modo){
   case "MENU":
 
-  fill(Color1);
-  rect(50,50,200,40);
-  
+  fill(Color1);  rect(50,50,200,40);
   fill(0);text("JUGAR", 80,70);
-  fill(Color2);
-  rect(50,100,200,40);
-  fill(0);
-  text("INSTRUCCIONES", 80,120);
-  fill(Color3);
-  rect(50,150,200,40);
-  fill(0);
-  text("SALIR", 80,170);
+  fill(Color2);rect(50,100,200,40);  
+  fill(0);text("INSTRUCCIONES", 80,120);  
+  fill(Color3);rect(50,150,200,40);  
+  fill(0);text("CRÉDITOS", 80,170);  
+  fill(Color4);rect(50,200,200,40);
+  fill(0);text("SALIR", 80,220);
+  image(jugar,width/2, height/2);
   seleccionar();
 
     break;
@@ -182,6 +164,9 @@ void draw(){
   break;
   case "INSTRUCCIONES":
   instruction();  
+  break;
+  case "CREDITS":
+  credits();
   break;
   case "PERDER":
   lose();
@@ -215,6 +200,10 @@ void seleccionar(){
     if (mouseX >opx && mouseX<opx+bb && mouseY >150 &&mouseY<150+hh){
       Color3= color(255,0,0,200);
     }else Color3 = color(255,0,0);
+    if (mouseX >opx && mouseX<opx+bb && mouseY >200 &&mouseY<200+hh){
+      Color4= color(255,0,0,200);
+    }else Color4 = color(255,0,0);
+    
      if (mouseX >opx && mouseX<opx+bb && mouseY >50 &&mouseY<50+hh && mousePressed){
      modo = "JUGAR";
      for(int i=20; i < width; i+=40){//añadir lista de bolsas de dinero ancho x alto cuando se seleccione modo jugar
@@ -226,7 +215,22 @@ void seleccionar(){
     }else if (mouseX >opx && mouseX<opx+bb && mouseY >100 &&mouseY<100+hh && mousePressed){
       modo = "INSTRUCCIONES";
     }else if (mouseX >opx && mouseX<opx+bb && mouseY >150 &&mouseY<150+hh&& mousePressed){
+      modo = "CREDITS";
+    }else if (mouseX >opx && mouseX<opx+bb && mouseY >200 &&mouseY<200+hh&& mousePressed){
       exit();
+    }
+    //-----------------------------------------  CON IMAGEN
+    if (mouseX >281 && mouseX<397 && mouseY >281 &&mouseY<309){
+      image(jugar2,width/2, height/2);
+    }
+    if (mouseX >281 && mouseX<397 && mouseY >281 &&mouseY<309 && mousePressed){
+     modo = "JUGAR";
+     for(int i=20; i < width; i+=40){//añadir lista de bolsas de dinero ancho x alto cuando se seleccione modo jugar
+    for(int j=20; j < height; j+=40){
+       Dinero D = new Dinero(i,j);
+       bolsas.add(D);
+    }
+  }
     }
   }
 //-----------------------------------------  
@@ -325,7 +329,7 @@ void dinero(){
   Dinero Di = (Dinero) bolsas.get(i);
   Di.dibujar();
   if(dist(x,y, Di.bx, Di.by)<c_a/2+radiob){//distancia entre dos puntos
-    bolsas.remove(i);moneda.trigger();// auido de recoleccion
+    bolsas.remove(i);moneda.trigger();// audio de recoleccion
   }
  }
   
@@ -352,39 +356,7 @@ image(images[imageIndex], ex,ey);vel_e*=-1;
    }
  }
  
-//Jugador------------------------------------
-void pelado(){
-    
-    image(imagenes[primera], x,y);//
-  if(keyPressed && (key==CODED)){
-       if(keyCode==RIGHT){
-   primera = (primera+1)%imagenes.length; 
-image(imagenes[primera], x,y);x+=vel;
-       
-}}
-  if(keyPressed && (key==CODED)){
-       if(keyCode==DOWN){ 
- primera = (primera+1)%imagenes.length; 
-image(imagenes[primera], x,y );y+=vel;
-       
-         
-}}
-if(keyPressed && (key==CODED)){
-       if(keyCode==LEFT){
- primera = (primera+1)%imagenes.length; 
-image(imagenes[primera], x,y );x-=vel;
-      
-}}
 
-if(keyPressed && (key==CODED)){
-       if(keyCode==UP){
- primera = (primera+1)%imagenes.length;
- image(imagenes[primera], x,y );y-=vel;
-      
-      }}
- 
-  
-}
 //Cuadrícula-------------------------------------------
 void cuadricula(){
   stroke(255);
@@ -450,4 +422,14 @@ void colisionar(){
   gameover= true;
   modo= "PERDER";//Inserte animación golgpe de enemigo
  }
+}
+
+void credits(){
+  background(#11AEF5);
+  fill(0);text("Duvan Rodriguez\nSantiago Vargas\nProgramación B1\n2021",10,10);
+   if (keyPressed){//Volver al menu
+    if(key == 'M' || key == 'm'){      
+     modo = "MENU";   
+    }
+    }
 }
