@@ -64,7 +64,7 @@ PImage[] bajimage = new PImage[maxImages];
 int sub= 0;
 PImage [] arimage = new PImage[maxImages];
 
-int vel=8;
+int vel=6;
 int vel_e=10;
 int r=100;
 //radio enemigo
@@ -96,6 +96,13 @@ color Color4;
 
 PImage jugar;
 PImage jugar2;
+PImage instr;
+PImage instru2;
+PImage crd;
+PImage crd2;
+PImage ext;
+PImage ext2;
+PImage port;
 
 
 void setup(){
@@ -125,6 +132,13 @@ for(int i =0; i < bajimage.length; i++)bajimage[i]=loadImage("abpersonaje_" + i 
 for(int i =0; i < arimage.length; i++)arimage[i]=loadImage("arpersonaje_" + i +".png");
 jugar = loadImage("jugar.png");
 jugar2 = loadImage("jugar2.png");
+instr= loadImage("instru.png");
+instru2=loadImage("instru2.png");
+crd = loadImage("cred.png");
+crd2=loadImage("cred2.png");
+ext=loadImage("ex.png");
+ext2=loadImage("ex2.png");
+port = loadImage("portad.png");
 x= 20 ;//Posicion para personaje
 y= 220 ;
 
@@ -141,21 +155,24 @@ opc[0] = new menu(50,50,200,40,200);
 
 //-----------------------------------------
 void draw(){
-  background(0); 
+  background(port); 
   imageMode(CENTER);
   textSize(15);
  switch(modo){
   case "MENU":
 
-  fill(Color1);  rect(50,50,200,40);
+  /*fill(Color1);  rect(50,50,200,40);
   fill(0);text("JUGAR", 80,70);
   fill(Color2);rect(50,100,200,40);  
   fill(0);text("INSTRUCCIONES", 80,120);  
   fill(Color3);rect(50,150,200,40);  
   fill(0);text("CRÉDITOS", 80,170);  
   fill(Color4);rect(50,200,200,40);
-  fill(0);text("SALIR", 80,220);
+  fill(0);text("SALIR", 80,220);*/
   image(jugar,width/2, height/2);
+  image(instr, width/2, height/2+45);
+  image(crd, width/2, height/2+90);
+  image(ext, width/2, height/2+140);
   seleccionar();
 
     break;
@@ -191,7 +208,7 @@ void seleccionar(){
   }
     x= 20;
   y= 220 ;
-      if (mouseX >opx && mouseX<opx+bb && mouseY >50 &&mouseY<50+hh){//variar el color ligeramente
+      /*if (mouseX >opx && mouseX<opx+bb && mouseY >50 &&mouseY<50+hh){//variar el color ligeramente
      Color1= color(255,0,0,200);
       }else Color1 = color(255,0,0);
     if (mouseX >opx && mouseX<opx+bb && mouseY >100 &&mouseY<100+hh){
@@ -218,12 +235,21 @@ void seleccionar(){
       modo = "CREDITS";
     }else if (mouseX >opx && mouseX<opx+bb && mouseY >200 &&mouseY<200+hh&& mousePressed){
       exit();
-    }
+    }*/
     //-----------------------------------------  CON IMAGEN
-    if (mouseX >281 && mouseX<397 && mouseY >281 &&mouseY<309){
+    if (mouseX >281 && mouseX<397 && mouseY >281 &&mouseY<315){
       image(jugar2,width/2, height/2);
     }
-    if (mouseX >281 && mouseX<397 && mouseY >281 &&mouseY<309 && mousePressed){
+    if (mouseX >194 && mouseX<485 && mouseY >332 &&mouseY<359){
+      image(instru2,width/2, height/2+46);
+    }
+    if (mouseX >148 && mouseX<430 && mouseY >375 &&mouseY<404){
+      image(crd2,width/2, height/2+90);
+    }
+    if (mouseX >285 && mouseX<394 && mouseY >427 &&mouseY<451){
+      image(ext2,width/2, height/2+140);
+    }
+    if (mouseX >281 && mouseX<397 && mouseY >281 &&mouseY<315 && mousePressed){
      modo = "JUGAR";
      for(int i=20; i < width; i+=40){//añadir lista de bolsas de dinero ancho x alto cuando se seleccione modo jugar
     for(int j=20; j < height; j+=40){
@@ -231,6 +257,12 @@ void seleccionar(){
        bolsas.add(D);
     }
   }
+    }else if (mouseX >194 && mouseX<485 && mouseY >332 &&mouseY<359 && mousePressed){
+      modo = "INSTRUCCIONES";
+    }else if (mouseX >148 && mouseX<430 && mouseY >375 &&mouseY<404 && mousePressed){
+      modo = "CREDITS";
+    }else if (mouseX >285 && mouseX<394 && mouseY >427 &&mouseY<453 && mousePressed){
+       exit();
     }
   }
 //-----------------------------------------  
@@ -298,7 +330,7 @@ void lose(){
   }*/
    x= 20;
   y= 220 ;
-  vel=8;
+  vel=6;
   
 }
 //MODO GANAR----------------------------------------- 
