@@ -46,6 +46,9 @@ boolean gameover = false;
 int c_paredes=26;//numero de paredes
 Pared [] p = new Pared[c_paredes];
 
+int c_paredes2=1;//numero de paredes
+Pared2 [] p2 = new Pared2[c_paredes2];
+
 
 //Con Sprite--------------------------------------------------------------------------------------
 
@@ -104,6 +107,8 @@ PImage ext;
 PImage ext2;
 PImage port;
 
+int a;
+int b;
 
 void setup(){
   size(680,600);
@@ -119,6 +124,7 @@ ganar = minim.loadFile("win.mp3");
    playerX= width/2;
    playerY= height/2;
   mapa();
+  mapa2();
   
   /*p[26] = new Pared(0,0,0,0);
   p[27] = new Pared(0,0,0,0);
@@ -139,8 +145,12 @@ crd2=loadImage("cred2.png");
 ext=loadImage("ex.png");
 ext2=loadImage("ex2.png");
 port = loadImage("portad.png");
-x= 20 ;//Posicion para personaje
-y= 220 ;
+
+a= 20;
+b=220;
+
+x= a ;//Posicion para personaje
+y= b ;
 
 ex= 540;//Posición para enemigo
 ey = 140; 
@@ -149,8 +159,8 @@ frameRate(20);
 
 //--------------------------------------------------------------------------------------
 opc[0] = new menu(50,50,200,40,200);
- opc[1] = new menu(50,100,200,40,200);
- modo = "MENU";
+opc[1] = new menu(50,100,200,40,200);
+modo = "MENU";
 }
 
 //-----------------------------------------
@@ -158,17 +168,11 @@ void draw(){
   background(port); 
   imageMode(CENTER);
   textSize(15);
+
  switch(modo){
   case "MENU":
 
-  /*fill(Color1);  rect(50,50,200,40);
-  fill(0);text("JUGAR", 80,70);
-  fill(Color2);rect(50,100,200,40);  
-  fill(0);text("INSTRUCCIONES", 80,120);  
-  fill(Color3);rect(50,150,200,40);  
-  fill(0);text("CRÉDITOS", 80,170);  
-  fill(Color4);rect(50,200,200,40);
-  fill(0);text("SALIR", 80,220);*/
+
   image(jugar,width/2, height/2);
   image(instr, width/2, height/2+45);
   image(crd, width/2, height/2+90);
@@ -191,6 +195,9 @@ void draw(){
   case "GANAR":
   win();
   break;
+  case "MAPA2":
+  design2();
+  break;
  }
   
   
@@ -208,34 +215,6 @@ void seleccionar(){
   }
     x= 20;
   y= 220 ;
-      /*if (mouseX >opx && mouseX<opx+bb && mouseY >50 &&mouseY<50+hh){//variar el color ligeramente
-     Color1= color(255,0,0,200);
-      }else Color1 = color(255,0,0);
-    if (mouseX >opx && mouseX<opx+bb && mouseY >100 &&mouseY<100+hh){
-      Color2= color(255,0,0,200);
-    }else Color2 = color(255,0,0);
-    if (mouseX >opx && mouseX<opx+bb && mouseY >150 &&mouseY<150+hh){
-      Color3= color(255,0,0,200);
-    }else Color3 = color(255,0,0);
-    if (mouseX >opx && mouseX<opx+bb && mouseY >200 &&mouseY<200+hh){
-      Color4= color(255,0,0,200);
-    }else Color4 = color(255,0,0);
-    
-     if (mouseX >opx && mouseX<opx+bb && mouseY >50 &&mouseY<50+hh && mousePressed){
-     modo = "JUGAR";
-     for(int i=20; i < width; i+=40){//añadir lista de bolsas de dinero ancho x alto cuando se seleccione modo jugar
-    for(int j=20; j < height; j+=40){
-       Dinero D = new Dinero(i,j);
-       bolsas.add(D);
-    }
-  }
-    }else if (mouseX >opx && mouseX<opx+bb && mouseY >100 &&mouseY<100+hh && mousePressed){
-      modo = "INSTRUCCIONES";
-    }else if (mouseX >opx && mouseX<opx+bb && mouseY >150 &&mouseY<150+hh&& mousePressed){
-      modo = "CREDITS";
-    }else if (mouseX >opx && mouseX<opx+bb && mouseY >200 &&mouseY<200+hh&& mousePressed){
-      exit();
-    }*/
     //-----------------------------------------  CON IMAGEN
     if (mouseX >281 && mouseX<397 && mouseY >281 &&mouseY<315){
       image(jugar2,width/2, height/2);
@@ -265,6 +244,7 @@ void seleccionar(){
        exit();
     }
   }
+  
 //-----------------------------------------  
  void play(){
    background(0);
@@ -416,9 +396,14 @@ void detect(){
     x=width-c_a/2;
     modo= "GANAR";
   }
-  /*if(playerX<0)playerX=0; //Para elipse: */if(x<c_a/2)x=c_a/2;
+  if(x-c_a/2<0){
+    
+    modo = "MAPA2";
+
+  }
+   //if(x<c_a/2)x=c_a/2;
   if(y>height-c_a/2)y=height-c_a/2; 
-  /*if(playerY<0)playerY=0; //Para elipse: */ if(y<c_a/2)y=c_a/2;
+  if(y<c_a/2)y=c_a/2;
   
 }
 
@@ -440,21 +425,19 @@ void colisionar(){
     ||((x+c_a/2>ex-re/2) && (x-c_a/2<ex+re/2) && (y +c_a/2>ey-re/2)&&(y-c_a/2<ey+re/2))){
 
   vel=0;
-  fill(255,0,0);
-  textMode(CENTER);bombo.trigger();// auido de electrocucion
-  text("YOU LOSE", width/2,width/2);
-  gameover= true;
+  //fill(255,0,0);
+  //textMode(CENTER);
+  bombo.trigger();// auido de electrocucion
+  //text("YOU LOSE", width/2,width/2);
+
   modo= "PERDER";//Insertar animación Choque electrico....
  } }  
  if((x+c_a/2>ex-re/2) && (x-c_a/2<ex+re/2) && (y +c_a/2>ey-re/2)&&(y-c_a/2<ey+re/2)){//Colision por enemigo
    vel=0;
-  fill(255,0,0);
-  textMode(CENTER);
-  text("YOU LOSE", width/2,width/2);
-  gameover= true;
   modo= "PERDER";//Inserte animación golgpe de enemigo
  }
 }
+
 
 void credits(){
   background(#11AEF5);

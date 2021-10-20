@@ -1,6 +1,6 @@
 //Jugador------------------------------------
 void pelado(){
-    
+   
     image(imagenes[primera], x,y,rp,rp);//
   if(keyPressed && (key==CODED)){
        if(keyCode==RIGHT){
