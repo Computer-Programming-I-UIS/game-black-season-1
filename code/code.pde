@@ -65,7 +65,7 @@ int sub= 0;
 PImage [] arimage = new PImage[maxImages];
 
 int vel=6;
-int vel_e=10;
+int vel_e=8;
 int r=100;
 //radio enemigo
 int re = 30; 
@@ -243,7 +243,7 @@ void seleccionar(){
     if (mouseX >194 && mouseX<485 && mouseY >332 &&mouseY<359){
       image(instru2,width/2, height/2+46);
     }
-    if (mouseX >148 && mouseX<430 && mouseY >375 &&mouseY<404){
+    if (mouseX >247 && mouseX<430 && mouseY >375 &&mouseY<404){
       image(crd2,width/2, height/2+90);
     }
     if (mouseX >285 && mouseX<394 && mouseY >427 &&mouseY<451){
@@ -259,7 +259,7 @@ void seleccionar(){
   }
     }else if (mouseX >194 && mouseX<485 && mouseY >332 &&mouseY<359 && mousePressed){
       modo = "INSTRUCCIONES";
-    }else if (mouseX >148 && mouseX<430 && mouseY >375 &&mouseY<404 && mousePressed){
+    }else if (mouseX >247 && mouseX<430 && mouseY >375 &&mouseY<404 && mousePressed){
       modo = "CREDITS";
     }else if (mouseX >285 && mouseX<394 && mouseY >427 &&mouseY<453 && mousePressed){
        exit();
@@ -267,8 +267,8 @@ void seleccionar(){
   }
 //-----------------------------------------  
  void play(){
-   background(255,0,0);
-   cuadricula();    
+   background(0);
+   //cuadricula();    
   dinero();  
   texto();    
   detect();   
