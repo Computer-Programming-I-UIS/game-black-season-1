@@ -109,6 +109,7 @@ PImage port;
 PImage gc;
 PImage go;
 PImage gw;
+PImage instru;
 
 int a;
 int b;
@@ -147,6 +148,7 @@ port = loadImage("portad.png");
 gc = loadImage("creditos.png");
 go = loadImage("game over.png");
 gw = loadImage("win.png");
+instru = loadImage("instrucciones.png");
 a= 20;
 b=220;
 
@@ -270,13 +272,13 @@ void seleccionar(){
  
 //INTRUCCIONES DEL JUEGO---------------------------------------- 
 void instruction(){
-   background(0,255,0);
-   textSize(25);
+   background(instru);
+  /* textSize(25);
    fill(0);
    text(("Instrucciones:"),10,25);
    textSize(15);
    text(("*Usa las flechas para moverte (una a la vez)\n*Escapa del laberinto y recolecta la mayor cantidad de monedas\n*No toques las paredes o moriras\n*Evita el policia."),10,50);
-   text(("Pulsa 'm' para volver al menú"),width/2-40,height/2);
+   text(("Pulsa 'm' para volver al menú"),width/2-40,height/2);*/
     if (keyPressed){
     if(key == 'M' || key == 'm'){      
      modo = "MENU";
