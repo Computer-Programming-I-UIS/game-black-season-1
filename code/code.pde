@@ -40,7 +40,7 @@ float radio1= 15;//Radio elipse jugador
 float radiob=5;//Radio "bolsa"
 
 
-int c_paredes=26;//numero de paredes
+int c_paredes=27;//numero de paredes
 Pared [] p = new Pared[c_paredes];
 
 int c_paredes2=1;//numero de paredes
@@ -286,9 +286,18 @@ void seleccionar(){
    
     }
     }
-      if(modo == "MAPA2"){
-    x= width-100;
-  y= 220 ;
+    if((x>534&&x<546&&y>height)||(x>373&&x<390&&y>height))modo = "MAPA2";
+      if(modo == "MAPA2"&&(x>373&&x<390&&y>height)){
+    x= 360+c_a;
+  y= c_a/2;
+  }
+  if(modo == "MAPA2"&&(x>534&&x<546&&y>height)){
+    x=540;
+    y=c_a/2;
+  }
+   if(modo == "MAPA2"){
+   x= 360+c_a;
+  y= c_a/2; 
   }
  }
  
@@ -402,9 +411,11 @@ void detect(){
   if(x-c_a/2<0){    
     modo = "MAPA2";
   }
+ 
    //if(x<c_a/2)x=c_a/2;
-  if(y>height-c_a/2)y=height-c_a/2; 
+   
   //if(y<c_a/2)y=c_a/2;
+ 
   
 }
 

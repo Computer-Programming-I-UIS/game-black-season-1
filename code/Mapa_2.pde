@@ -1,5 +1,5 @@
 void mapa2(){
-  p2[0] = new Pared2(40,40,40,40);
+  p2[0] = new Pared2(0,0,360,40);
  /* p[1]= new Pared(0,240,40,360);
   p[2] = new Pared(0,height-40,width,40);
   p[3] = new Pared(0,0,width,40);
@@ -46,12 +46,16 @@ void design2(){
    
     }
     }
-    if(y<0){
+    if(y<0&&x<390&&x>375||(y<0&&x>533&&x<549)){
      modo = "JUGAR"; 
     }
-     if(modo == "JUGAR"){
-    x= 20;
-  y= 220 ;
+     if(modo == "JUGAR"&&y<0&&x<390&&x>375){
+    x= 380;
+  y= height-c_a/2 ;
+  }
+  if(modo == "JUGAR" && (y<0&&x>533&&x<549)){
+    x=540;
+    y= height-c_a/2 ;
   }
  
 }
