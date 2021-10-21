@@ -106,10 +106,13 @@ PImage crd2;
 PImage ext;
 PImage ext2;
 PImage port;
+PImage gc;
+PImage go;
+PImage gw;
 
 int a;
 int b;
-
+//----------------------------------------------------------------------------------------------------------------
 void setup(){
   size(680,600);
   ellipseMode(RADIUS);
@@ -125,17 +128,13 @@ ganar = minim.loadFile("win.mp3");
    playerY= height/2;
   mapa();
   mapa2();
-  
-  /*p[26] = new Pared(0,0,0,0);
-  p[27] = new Pared(0,0,0,0);
-  p[28] = new Pared(0,0,0,0);*/
-
 
 //Con Sprite--------------------------------------------------------------------------------------
 for(int i = 0; i < images.length; i++)images[i] = loadImage("policia_" + i + ".png");
 for(int a = 0; a < imagenes.length; a++)imagenes[a] = loadImage("personaje_" + a + ".png");
 for(int i =0; i < bajimage.length; i++)bajimage[i]=loadImage("abpersonaje_" + i +".png");
 for(int i =0; i < arimage.length; i++)arimage[i]=loadImage("arpersonaje_" + i +".png");
+//Imagenees--------------------------------------------------------------------------------------
 jugar = loadImage("jugar.png");
 jugar2 = loadImage("jugar2.png");
 instr= loadImage("instru.png");
@@ -145,7 +144,9 @@ crd2=loadImage("cred2.png");
 ext=loadImage("ex.png");
 ext2=loadImage("ex2.png");
 port = loadImage("portad.png");
-
+gc = loadImage("creditos.png");
+go = loadImage("game over.png");
+gw = loadImage("win.png");
 a= 20;
 b=220;
 
@@ -163,7 +164,7 @@ opc[1] = new menu(50,100,200,40,200);
 modo = "MENU";
 }
 
-//-----------------------------------------
+//-------------------------------------------------------------------------------------------------------------------
 void draw(){
   background(port); 
   imageMode(CENTER);
@@ -254,7 +255,7 @@ void seleccionar(){
   detect();   
   pelado();
   enemigo();
-  //player();
+
   for(int i=0; i< c_paredes; i++){
     p[i].dibujar();    
   }
@@ -288,12 +289,7 @@ void instruction(){
  }
 //MODO PERDER-----------------------------------------
 void lose(){
-  background(255,0,0);
-  textSize(50);
-  fill(0);
-  text("YOU LOSE",width/2,height/2);//Incluya animación
-  textSize(15);
-  text("Pulsa m para regresar al menú", width/2,height/2+100);
+  background(go);
   text("Bolsas Recolectadas...."+(255-bolsas.size()), width/2,height/2+200);
   if (keyPressed){
     if(key == 'M' || key == 'm'){      
@@ -315,12 +311,8 @@ void lose(){
 }
 //MODO GANAR----------------------------------------- 
  void win(){//Inserte celebración
-   background(#24D1FF);
-   fill(0);
-   textSize(50);
-   text("YOU WIN", width/2,height/2);
-   textSize(18);ganar.play();// auido de victoria
-   text("Pulsa m para regresar al menú", width/2, height/2+100);
+   background(gw);
+   ganar.play();// auido de victoria
     if (keyPressed){
     if(key == 'M' || key == 'm'){      
      modo = "MENU";
@@ -346,15 +338,7 @@ void dinero(){
  }
   
 }
-//--------------------------------------------------
-void keyPressed(){//Movimiento player
- if(key==CODED){
-  if (keyCode == LEFT) playerX-=VP;
- if (keyCode==RIGHT)playerX+=VP;
- if (keyCode==UP) playerY-=VP;
- if(keyCode==DOWN)playerY+=VP;
- }
- }
+
  //--------------------------------------------------
  void enemigo(){
    image(images[imageIndex], ex, ey);//policia
@@ -392,7 +376,7 @@ void texto(){
 //Detección de bordes-----------------------------------------
 
 void detect(){
-  if (x > width-c_a/2){
+  if (x > width-c_a/2 && modo == "JUGAR"){
     x=width-c_a/2;
     modo= "GANAR";
   }
@@ -406,17 +390,6 @@ void detect(){
   if(y<c_a/2)y=c_a/2;
   
 }
-
-//JUGADOR-------------------------------------------
-void player(){
-  noStroke();
-  fill(0,255,0);
-  rectMode(CENTER);
-  rect(playerX, playerY, radio1,radio1);//Jugador
-  rectMode(CORNER);
-  
-}
-
 
 //COLISIONES CON PAREDES-----------------------------------------------
 void colisionar(){
@@ -440,8 +413,8 @@ void colisionar(){
 
 
 void credits(){
-  background(#11AEF5);
-  fill(0);text("Duvan Rodriguez\nSantiago Vargas\nProgramación B1\n2021",10,10);
+  background(gc);
+  //fill(0);text("Duvan Rodriguez\nSantiago Vargas\nProgramación B1\n2021",10,10);
    if (keyPressed){//Volver al menu
     if(key == 'M' || key == 'm'){      
      modo = "MENU";   

@@ -31,7 +31,7 @@ void design2(){
    background(0);
   
    cuadricula();    
-  dinero();  
+  dinero2();  
   texto();    
   detect();   
   pelado2();
@@ -67,7 +67,19 @@ void colisionar2(){
  }
   
 }
-
+void dinero2(){
+  if ( modo == "MAPA2"){
+  noStroke();  
+  for (int i=0; i < bolsas.size(); i++){//Aparición de bolsas 
+  Dinero D2i = (Dinero) bolsas.get(i);
+  D2i.dibujar();
+  if(dist(x,y, D2i.bx, D2i.by)<c_a/2+radiob){//distancia entre dos puntos
+    bolsas.remove(i);moneda.trigger();// audio de recoleccion
+  }
+  }
+ }
+  
+}
 void pelado2(){
    x=width-100;
    y=220;
