@@ -46,18 +46,21 @@ void design2(){
    
     }
     }
+    if(y<0){
+     modo = "JUGAR"; 
+    }
+     if(modo == "JUGAR"){
+    x= 20;
+  y= 220 ;
+  }
  
 }
 void colisionar2(){
   for(int i=0; i < c_paredes2;i++){//Colision con paredes
-    if(((x+c_a/2>=p2[i].px) && (x-c_a/2<p2[i].px+p2[i].bp) && (y +c_a/2>= p2[i].py)&&(y-c_a/2< p2[i].py + p2[i].ap))
-    /*||((x+c_a/2>ex-re/2) && (x-c_a/2<ex+re/2) && (y +c_a/2>ey-re/2)&&(y-c_a/2<ey+re/2))*/){
+    if(((x+c_a/2>=p2[i].px) && (x-c_a/2<p2[i].px+p2[i].bp) && (y +c_a/2>= p2[i].py)&&(y-c_a/2< p2[i].py + p2[i].ap))){
 
   vel=0;
-  //fill(255,0,0);
-  //textMode(CENTER);
   bombo.trigger();// auido de electrocucion
-  //text("YOU LOSE", width/2,width/2);
 
   modo= "PERDER";//Insertar animación Choque electrico....
  } }  
@@ -70,24 +73,22 @@ void colisionar2(){
 void dinero2(){
   if ( modo == "MAPA2"){
   noStroke();  
-  for (int i=0; i < bolsas.size(); i++){//Aparición de bolsas 
-  Dinero D2i = (Dinero) bolsas.get(i);
+  for (int i=0; i < bolsas2.size(); i++){//Aparición de bolsas 
+  Dinero2 D2i = (Dinero2) bolsas2.get(i);
   D2i.dibujar();
   if(dist(x,y, D2i.bx, D2i.by)<c_a/2+radiob){//distancia entre dos puntos
-    bolsas.remove(i);moneda.trigger();// audio de recoleccion
+    bolsas2.remove(i);moneda.trigger();// audio de recoleccion
+   }
   }
-  }
- }
-  
+ }  
 }
-void pelado2(){
-   x=width-100;
-   y=220;
-    image(imagenes[primera], x,y,rp,rp);//
+
+void pelado2(){   
+    image(imagenes[primera], x,y);//
   if(keyPressed && (key==CODED)){
        if(keyCode==RIGHT){
    primera = (primera+1)%imagenes.length; 
-image(imagenes[primera], x,y, rp,rp);x+=vel;
+image(imagenes[primera], x,y);x+=vel;
        
 }}
   if(keyPressed && (key==CODED)){
@@ -129,4 +130,10 @@ class Pared2{
   fill(0,0,255);
   rect(px,py,bp,ap);   
  }
+}
+
+void remover(){
+ for (int i=0; i < bolsas2.size(); i++){
+    bolsas2.remove(i);
+  } 
 }

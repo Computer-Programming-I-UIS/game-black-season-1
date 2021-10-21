@@ -28,6 +28,7 @@ AudioPlayer ganar;
 
 
 ArrayList<Dinero> bolsas = new ArrayList<Dinero>();
+ArrayList<Dinero2> bolsas2 = new ArrayList<Dinero2>();
 float playerX;//Posición jugador
 float playerY;
 
@@ -38,10 +39,6 @@ float VP= cantidad;//Velocidad
 float radio1= 15;//Radio elipse jugador
 float radiob=5;//Radio "bolsa"
 
-
-
-//boolean colisionar = false;
-boolean gameover = false;
 
 int c_paredes=26;//numero de paredes
 Pared [] p = new Pared[c_paredes];
@@ -149,11 +146,11 @@ gc = loadImage("creditos.png");
 go = loadImage("game over.png");
 gw = loadImage("win.png");
 instru = loadImage("instrucciones.png");
-a= 20;
+a= width -20;
 b=220;
 
-x= a ;//Posicion para personaje
-y= b ;
+x= 20 ;//Posicion para personaje
+y= 220 ;
 
 ex= 540;//Posición para enemigo
 ey = 140; 
@@ -216,8 +213,10 @@ void seleccionar(){
   for (int i=0; i < bolsas.size(); i++){
     bolsas.remove(i);
   }
+  remover();
     x= 20;
   y= 220 ;
+
     //-----------------------------------------  CON IMAGEN
     if (mouseX >281 && mouseX<397 && mouseY >281 &&mouseY<315){
       image(jugar2,width/2, height/2);
@@ -237,6 +236,8 @@ void seleccionar(){
     for(int j=20; j < height; j+=40){
        Dinero D = new Dinero(i,j);
        bolsas.add(D);
+        Dinero2 D2 = new Dinero2(i,j);
+       bolsas2.add(D2);
     }
   }
     }else if (mouseX >194 && mouseX<485 && mouseY >332 &&mouseY<359 && mousePressed){
@@ -268,17 +269,15 @@ void seleccionar(){
    
     }
     }
+      if(modo == "MAPA2"){
+    x= width-100;
+  y= 220 ;
+  }
  }
  
 //INTRUCCIONES DEL JUEGO---------------------------------------- 
 void instruction(){
    background(instru);
-  /* textSize(25);
-   fill(0);
-   text(("Instrucciones:"),10,25);
-   textSize(15);
-   text(("*Usa las flechas para moverte (una a la vez)\n*Escapa del laberinto y recolecta la mayor cantidad de monedas\n*No toques las paredes o moriras\n*Evita el policia."),10,50);
-   text(("Pulsa 'm' para volver al menú"),width/2-40,height/2);*/
     if (keyPressed){
     if(key == 'M' || key == 'm'){      
      modo = "MENU";
@@ -322,6 +321,7 @@ void lose(){
      for (int i=0; i < bolsas.size(); i++){//Aparición de bolsas 
     bolsas.remove(i);
   }
+  remover();
  }
     }
    }
@@ -382,34 +382,33 @@ void detect(){
     x=width-c_a/2;
     modo= "GANAR";
   }
-  if(x-c_a/2<0){
-    
+  if(x-c_a/2<0){    
     modo = "MAPA2";
-
   }
    //if(x<c_a/2)x=c_a/2;
   if(y>height-c_a/2)y=height-c_a/2; 
-  if(y<c_a/2)y=c_a/2;
+  //if(y<c_a/2)y=c_a/2;
   
 }
 
 //COLISIONES CON PAREDES-----------------------------------------------
 void colisionar(){
   for(int i=0; i < c_paredes;i++){//Colision con paredes
-    if(((x+c_a/2>=p[i].px) && (x-c_a/2<p[i].px+p[i].bp) && (y +c_a/2>= p[i].py)&&(y-c_a/2< p[i].py + p[i].ap))
-    ||((x+c_a/2>ex-re/2) && (x-c_a/2<ex+re/2) && (y +c_a/2>ey-re/2)&&(y-c_a/2<ey+re/2))){
+    if(((x+c_a/2>=p[i].px) && (x-c_a/2<p[i].px+p[i].bp) && (y +c_a/2>= p[i].py)&&(y-c_a/2< p[i].py + p[i].ap))){
 
   vel=0;
-  //fill(255,0,0);
-  //textMode(CENTER);
-  bombo.trigger();// auido de electrocucion
-  //text("YOU LOSE", width/2,width/2);
+  bombo.trigger();
 
   modo= "PERDER";//Insertar animación Choque electrico....
  } }  
  if((x+c_a/2>ex-re/2) && (x-c_a/2<ex+re/2) && (y +c_a/2>ey-re/2)&&(y-c_a/2<ey+re/2)){//Colision por enemigo
-   vel=0;
+   vel=0;bombo.trigger();
   modo= "PERDER";//Inserte animación golgpe de enemigo
+ }
+ if((x+c_a/2>100)&&(x<120+c_a/2)&&(y+c_a/2>240)&&(y<260+c_a/2)){
+  vel=15; 
+ }else if ((x+c_a/2>100)&&(x<120+c_a/2)&&(y+c_a/2>400)&&(y<260+405)){
+  vel=6; 
  }
 }
 
