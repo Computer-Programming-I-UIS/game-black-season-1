@@ -45,6 +45,10 @@ Pared [] p = new Pared[c_paredes];
 
 int c_paredes2=1;//numero de paredes
 Pared2 [] p2 = new Pared2[c_paredes2];
+int tim = 1;
+impulso [] im = new impulso[tim];
+int retr = 1;
+back [] bk = new back [retr];
 
 
 //Con Sprite--------------------------------------------------------------------------------------
@@ -63,6 +67,8 @@ int bajando = 0;
 PImage[] bajimage = new PImage[maxImages];
 int sub= 0;
 PImage [] arimage = new PImage[maxImages];
+int izq=0;
+PImage [] izimage = new PImage[maxImages];
 
 int vel=6;
 int vel_e=8;
@@ -125,6 +131,8 @@ ganar = minim.loadFile("win.mp3");
    playerX= width/2;
    playerY= height/2;
   mapa();
+  imp1();
+  bkk();
   mapa2();
 
 //Con Sprite--------------------------------------------------------------------------------------
@@ -132,6 +140,8 @@ for(int i = 0; i < images.length; i++)images[i] = loadImage("policia_" + i + ".p
 for(int a = 0; a < imagenes.length; a++)imagenes[a] = loadImage("personaje_" + a + ".png");
 for(int i =0; i < bajimage.length; i++)bajimage[i]=loadImage("abpersonaje_" + i +".png");
 for(int i =0; i < arimage.length; i++)arimage[i]=loadImage("arpersonaje_" + i +".png");
+for(int i =0; i < izimage.length; i++)izimage[i]=loadImage("personajez_" + i +".png");
+
 //Imagenees--------------------------------------------------------------------------------------
 jugar = loadImage("jugar.png");
 jugar2 = loadImage("jugar2.png");
@@ -202,7 +212,7 @@ void draw(){
   
   
   
-  println(mouseX, mouseY, bolsas.size());
+  println(mouseX, mouseY, bolsas.size(),x,y);
   
   
   
@@ -251,10 +261,16 @@ void seleccionar(){
   
 //-----------------------------------------  
  void play(){
-   background(0);
+   background(#051021);
    //cuadricula();    
   dinero();  
-  texto();    
+  texto();
+   for(int i=0; i< tim; i++){
+    im[i].dibujar();    
+  }
+  for(int i=0; i< retr; i++){
+    bk[i].dibujar();    
+  }
   detect();   
   pelado();
   enemigo();
@@ -262,6 +278,7 @@ void seleccionar(){
   for(int i=0; i< c_paredes; i++){
     p[i].dibujar();    
   }
+ 
   colisionar();
  if (keyPressed){//Volver al menu
     if(key == 'M' || key == 'm'){      

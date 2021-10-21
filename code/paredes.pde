@@ -11,6 +11,7 @@ class Pared{
    ap=a;   
  }
  void dibujar(){
+   stroke(255);
   fill(0,0,255);
   rect(px,py,bp,ap);   
  }

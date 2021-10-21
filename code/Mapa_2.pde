@@ -34,7 +34,7 @@ void design2(){
   dinero2();  
   texto();    
   detect();   
-  pelado2();
+  pelado();
   enemigo();
    for(int i=0; i< c_paredes2; i++){
     p2[i].dibujar2();    
@@ -83,37 +83,6 @@ void dinero2(){
  }  
 }
 
-void pelado2(){   
-    image(imagenes[primera], x,y);//
-  if(keyPressed && (key==CODED)){
-       if(keyCode==RIGHT){
-   primera = (primera+1)%imagenes.length; 
-image(imagenes[primera], x,y);x+=vel;
-       
-}}
-  if(keyPressed && (key==CODED)){
-       if(keyCode==DOWN){ 
- bajando = (bajando+1)%bajimage.length; 
-image(bajimage[bajando], x,y);y+=vel;
-       
-         
-}}
-if(keyPressed && (key==CODED)){
-       if(keyCode==LEFT){
- primera = (primera+1)%imagenes.length; 
-image(imagenes[primera], x,y,rp,rp );x-=vel;
-      
-}}
-
-if(keyPressed && (key==CODED)){
-       if(keyCode==UP){
- sub = (sub+1)%arimage.length;
- image(arimage[sub], x,y);y-=vel;
-      
-      }}
- 
-  
-}
 class Pared2{
  float px;
  float py;

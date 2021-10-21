@@ -17,8 +17,8 @@ image(bajimage[bajando], x,y);y+=vel;
 }}
 if(keyPressed && (key==CODED)){
        if(keyCode==LEFT){
- primera = (primera+1)%imagenes.length; 
-image(imagenes[primera], x,y,rp,rp );x-=vel;
+ izq = (izq+1)%izimage.length; 
+image(izimage[izq], x,y,rp,rp );x-=vel;
       
 }}
 
