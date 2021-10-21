@@ -1,41 +1,48 @@
 void mapa2(){
   p2[0] = new Pared2(0,0,360,40);
- /* p[1]= new Pared(0,240,40,360);
-  p[2] = new Pared(0,height-40,width,40);
-  p[3] = new Pared(0,0,width,40);
-  p[4] = new Pared(width-40,0,40,height-120);
-  p[5]= new Pared(0,160,160,40);
-  p[6] = new Pared(120,200,40,240);
-  p[7] = new Pared(40,360,40,40);
-  p[8] = new Pared(80,480,40,80);
-  p[9]= new Pared(160,360,200,40);
-  p[10] = new Pared(280,400,40,80);
-  p[11] = new Pared(200,440,120,40);
-  p[12] = new Pared(240,520,40,40);
-  p[13] = new Pared(80,80,320,40);
-  p[14] = new Pared(360,440,160,40);
-  p[15] = new Pared(480,480,40,80);
-  p[16] = new Pared(360,480,40,40);
-  p[17] = new Pared(200,120,40,200);
-  p[18] = new Pared(240,240,320,40);
-  p[19] = new Pared(400,320,40,120);
-  p[20] = new Pared(480,40,40,160);
-  p[21] = new Pared(280,160,200,40);
-  p[22] = new Pared(320,280,40,40);
-  p[23] = new Pared(560,160,40,400);
-  p[24] = new Pared(560,80,40,40);
-  p[25] = new Pared(480,280,40,120);*/
+  p2[1] = new Pared2(0,0,40,height);
+  p2[2] = new Pared2(0,560,width,40);
+  p2[3] = new Pared2(640,0,40,height);
+  p2[4] = new Pared2(400,0,120,40);
+  p2[5] = new Pared2(320,40,40,40);
+  p2[6] = new Pared2(160,240,360,40);
+  p2[7] = new Pared2(160,240,40,120);
+  p2[8] = new Pared2(160,320,360,40);
+  p2[9] = new Pared2(480,240,40,120);
+  p2[10] = new Pared2(440,40,40,200);
+  p2[11] = new Pared2(560,0,80,40);
+  p2[12] = new Pared2(360,120,40,80);
+  p2[13] = new Pared2(320,360,40,80);
+  p2[14] = new Pared2(480,360,40,80);
+  p2[15] = new Pared2(520,320,40,40);
+  p2[16] = new Pared2(280,200,40,40);
+  p2[17] = new Pared2(240,120,120,40);
+  p2[18] = new Pared2(80,80,200,40);
+  p2[19] = new Pared2(80,120,40,320);
+  p2[20] = new Pared2(120,160,40,40);
+  p2[21] = new Pared2(120,400,160,40);
+  p2[22] = new Pared2(200,440,40,40);
+  p2[23] = new Pared2(80,480,320,40);
+  p2[24] = new Pared2(320,480,40,80);
+  p2[25] = new Pared2(400,400,40,120);
+  p2[26] = new Pared2(440,480,120,40);
+  p2[27] = new Pared2(560,400,40,120);
+  p2[28] = new Pared2(600,240,40,160);
+  p2[29] = new Pared2(560,80,40,200);
+  p2[30] = new Pared2(520,80,40,40);
+  p2[31] = new Pared2(480,160,40,40);
+
   
 }
 void design2(){
-   background(0);
+   background(#051021);
   
-   cuadricula();    
+   //cuadricula();    
   dinero2();  
   texto();    
   detect();   
   pelado();
-  enemigo();
+  //enemigo();
    for(int i=0; i< c_paredes2; i++){
     p2[i].dibujar2();    
   }

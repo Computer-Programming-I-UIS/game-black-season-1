@@ -43,8 +43,10 @@ float radiob=5;//Radio "bolsa"
 int c_paredes=27;//numero de paredes
 Pared [] p = new Pared[c_paredes];
 
-int c_paredes2=1;//numero de paredes
+int c_paredes2=32;//numero de paredes
 Pared2 [] p2 = new Pared2[c_paredes2];
+
+
 int tim = 1;
 impulso [] im = new impulso[tim];
 int retr = 1;
@@ -70,7 +72,7 @@ PImage [] arimage = new PImage[maxImages];
 int izq=0;
 PImage [] izimage = new PImage[maxImages];
 
-int vel=6;
+int vel=4;
 int vel_e=8;
 int r=100;
 //radio enemigo
@@ -265,7 +267,7 @@ void seleccionar(){
    //cuadricula();    
   dinero();  
   texto();
-   for(int i=0; i< tim; i++){
+   for(int i=0; i< tim; i++){//Dibujar extras
     im[i].dibujar();    
   }
   for(int i=0; i< retr; i++){
@@ -333,7 +335,7 @@ void lose(){
   }*/
    x= 20;
   y= 220 ;
-  vel=6;
+  vel=4;
   
 }
 //MODO GANAR----------------------------------------- 
@@ -433,10 +435,12 @@ void colisionar(){
    vel=0;bombo.trigger();
   modo= "PERDER";//Inserte animación golgpe de enemigo
  }
- if((x+c_a/2>100)&&(x<120+c_a/2)&&(y+c_a/2>240)&&(y<260+c_a/2)){
+ for(int i = 0; i < tim; i++){
+ if((x+c_a/2>im[i].px)&&(x<im[i].px+c_a/2+im[i].bp)&&(y+c_a/2>im[i].py)&&(y<im[i].py+c_a/2+ im[i].ap)){//Colisionar con extras
   vel=15; 
- }else if ((x+c_a/2>100)&&(x<120+c_a/2)&&(y+c_a/2>400)&&(y<260+405)){
-  vel=6; 
+ }else if ((x+c_a/2>bk[i].px)&&(x<bk[i].px+c_a/2+bk[i].bp)&&(y+c_a/2>bk[i].py)&&(y<bk[i].py+c_a/2+ bk[i].ap)){
+  vel=4; 
+ }
  }
 }
 
