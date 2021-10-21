@@ -23,6 +23,7 @@ Minim minim;
 AudioSample bombo;
 AudioSample moneda;
 AudioPlayer ganar;
+AudioPlayer fond;
 
 
 
@@ -128,6 +129,8 @@ minim = new Minim(this);
 bombo = minim.loadSample("electro.mp3");
 moneda = minim.loadSample("sonmoneda.mp3");
 ganar = minim.loadFile("win.mp3");
+
+fond = minim.loadFile("music1.mp3");
 //********* sonido electrocutar
   
    playerX= width/2;
@@ -259,11 +262,17 @@ void seleccionar(){
     }else if (mouseX >285 && mouseX<394 && mouseY >427 &&mouseY<453 && mousePressed){
        exit();
     }
+    if (modo == "JUGAR"){
+     fond.loop(); 
+    }else if (modo ==  "MENU" || modo == "GANAR"||modo == "PERDER"){
+      fond.pause();
+      fond.rewind();}
   }
   
 //-----------------------------------------  
  void play(){
    background(#051021);
+   
    //cuadricula();    
   dinero();  
   texto();
@@ -427,11 +436,13 @@ void colisionar(){
     if(((x+c_a/2>=p[i].px) && (x-c_a/2<p[i].px+p[i].bp) && (y +c_a/2>= p[i].py)&&(y-c_a/2< p[i].py + p[i].ap))){
 
   vel=0;
+  fond.pause();
   bombo.trigger();
 
   modo= "PERDER";//Insertar animación Choque electrico....
  } }  
  if((x+c_a/2>ex-re/2) && (x-c_a/2<ex+re/2) && (y +c_a/2>ey-re/2)&&(y-c_a/2<ey+re/2)){//Colision por enemigo
+   fond.pause();
    vel=0;bombo.trigger();
   modo= "PERDER";//Inserte animación golgpe de enemigo
  }
