@@ -218,7 +218,7 @@ void draw(){
   
   
   
-  println(mouseX, mouseY, bolsas.size(),x,y);
+  println(mouseX, mouseY, bolsas.size(),bolsas2.size(),x,y);
   
   
   
@@ -306,6 +306,7 @@ void seleccionar(){
   }
  
   colisionar();
+  puntos();
  if (keyPressed){//Volver al menu
     if(key == 'M' || key == 'm'){      
      modo = "MENU";
@@ -328,7 +329,12 @@ void seleccionar(){
   ey=140;
   }
  }
- 
+ //Puntuación--------------------------------------------------------
+ void puntos(){
+   fill(255);
+  text("PUNTUACIÓN: " + (510 -(bolsas2.size()+ bolsas.size())),20,20); 
+   
+ }
 //INTRUCCIONES DEL JUEGO---------------------------------------- 
 void instruction(){
    background(instru);

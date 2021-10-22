@@ -55,6 +55,7 @@ void design2(){
    image(skull, 640,i,40,40);
   }
   colisionar2();
+  puntos();
   if (keyPressed){//Volver al menu
     if(key == 'M' || key == 'm'){      
      modo = "MENU";
