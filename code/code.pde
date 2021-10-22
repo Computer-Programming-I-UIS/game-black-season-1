@@ -48,9 +48,9 @@ int c_paredes2=32;//numero de paredes
 Pared2 [] p2 = new Pared2[c_paredes2];
 
 
-int tim = 2;
+int tim = 4;
 impulso [] im = new impulso[tim];
-int retr = 2;
+int retr = 4;
 back [] bk = new back [retr];
 
 
