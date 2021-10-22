@@ -48,9 +48,9 @@ int c_paredes2=32;//numero de paredes
 Pared2 [] p2 = new Pared2[c_paredes2];
 
 
-int tim = 1;
+int tim = 2;
 impulso [] im = new impulso[tim];
-int retr = 1;
+int retr = 2;
 back [] bk = new back [retr];
 
 
@@ -116,7 +116,7 @@ PImage gc;
 PImage go;
 PImage gw;
 PImage instru;
-
+PImage skull;
 int a;
 int b;
 //----------------------------------------------------------------------------------------------------------------
@@ -161,6 +161,7 @@ gc = loadImage("creditos.png");
 go = loadImage("game over.png");
 gw = loadImage("win.png");
 instru = loadImage("instrucciones.png");
+skull = loadImage("skull.png");
 a= width -20;
 b=220;
 
@@ -245,6 +246,19 @@ void seleccionar(){
     if (mouseX >285 && mouseX<394 && mouseY >427 &&mouseY<451){
       image(ext2,width/2, height/2+140);
     }
+    if(keyPressed){
+   if(key == ' '){
+     modo = "JUGAR";
+     for(int i=20; i < width; i+=40){//añadir lista de bolsas de dinero ancho x alto cuando se seleccione modo jugar
+    for(int j=20; j < height; j+=40){
+       Dinero D = new Dinero(i,j);
+       bolsas.add(D);
+        Dinero2 D2 = new Dinero2(i,j);
+       bolsas2.add(D2);
+    }
+   }
+  }
+  }
     if (mouseX >281 && mouseX<397 && mouseY >281 &&mouseY<315 && mousePressed){
      modo = "JUGAR";
      for(int i=20; i < width; i+=40){//añadir lista de bolsas de dinero ancho x alto cuando se seleccione modo jugar
@@ -255,6 +269,7 @@ void seleccionar(){
        bolsas2.add(D2);
     }
   }
+  
     }else if (mouseX >194 && mouseX<485 && mouseY >332 &&mouseY<359 && mousePressed){
       modo = "INSTRUCCIONES";
     }else if (mouseX >247 && mouseX<430 && mouseY >375 &&mouseY<404 && mousePressed){
@@ -309,6 +324,8 @@ void seleccionar(){
    if(modo == "MAPA2"){
    x= 360+c_a;
   y= c_a/2; 
+  ex = 220;
+  ey=140;
   }
  }
  
@@ -350,6 +367,7 @@ void lose(){
 //MODO GANAR----------------------------------------- 
  void win(){//Inserte celebración
    background(gw);
+   fond.pause();
    ganar.play();// auido de victoria
     if (keyPressed){
     if(key == 'M' || key == 'm'){      
@@ -422,11 +440,6 @@ void detect(){
   if(x-c_a/2<0){    
     modo = "MAPA2";
   }
- 
-   //if(x<c_a/2)x=c_a/2;
-   
-  //if(y<c_a/2)y=c_a/2;
- 
   
 }
 

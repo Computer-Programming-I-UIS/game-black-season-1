@@ -22,7 +22,7 @@ void mapa2(){
   p2[20] = new Pared2(120,160,40,40);
   p2[21] = new Pared2(120,400,160,40);
   p2[22] = new Pared2(200,440,40,40);
-  p2[23] = new Pared2(80,480,320,40);
+  p2[23] = new Pared2(80,480,280,40);
   p2[24] = new Pared2(320,480,40,80);
   p2[25] = new Pared2(400,400,40,120);
   p2[26] = new Pared2(440,480,120,40);
@@ -34,6 +34,7 @@ void mapa2(){
 
   
 }
+//-----------------------------------------------------------------------------------
 void design2(){
    background(#051021);
   
@@ -41,10 +42,17 @@ void design2(){
   dinero2();  
   texto();    
   detect();   
-  pelado();
-  //enemigo();
+  
+  enemigo2();
    for(int i=0; i< c_paredes2; i++){
     p2[i].dibujar2();    
+  }
+  pelado();
+  for(int i = 220; i <500; i+=40){
+   image(skull, i,300,40,40);
+  }
+  for(int i = 280; i <400; i+=40){
+   image(skull, 640,i,40,40);
   }
   colisionar2();
   if (keyPressed){//Volver al menu
@@ -58,24 +66,31 @@ void design2(){
     }
      if(modo == "JUGAR"&&y<0&&x<390&&x>375){
     x= 380;
-  y= height-c_a/2 ;
+    y= height-c_a/2 ;
+    ex= 540;//Posición para enemigo
+    ey = 140;
   }
   if(modo == "JUGAR" && (y<0&&x>533&&x<549)){
     x=540;
     y= height-c_a/2 ;
+    ex= 540;//Posición para enemigo
+    ey = 140;
   }
  
 }
+//-----------------------------------------------------------------------------------
 void colisionar2(){
   for(int i=0; i < c_paredes2;i++){//Colision con paredes
-    if(((x+c_a/2>=p2[i].px) && (x-c_a/2<p2[i].px+p2[i].bp) && (y +c_a/2>= p2[i].py)&&(y-c_a/2< p2[i].py + p2[i].ap))){
+    if(((x+c_a/2>=p2[i].px+3) && (x-c_a/2<p2[i].px+p2[i].bp-3) && (y +c_a/2>= p2[i].py+3)&&(y-c_a/2< p2[i].py + p2[i].ap-3))){
 
+  fond.pause();    
   vel=0;
   bombo.trigger();// auido de electrocucion
 
   modo= "PERDER";//Insertar animación Choque electrico....
  } }  
  if((x+c_a/2>ex-re/2) && (x-c_a/2<ex+re/2) && (y +c_a/2>ey-re/2)&&(y-c_a/2<ey+re/2)){//Colision por enemigo
+   fond.pause();
    vel=0;bombo.trigger();
   modo= "PERDER";//Inserte animación golgpe de enemigo
  }
@@ -83,7 +98,7 @@ void colisionar2(){
 }
 void dinero2(){
   if ( modo == "MAPA2"){
-  noStroke();  
+  //stroke(255);  
   for (int i=0; i < bolsas2.size(); i++){//Aparición de bolsas 
   Dinero2 D2i = (Dinero2) bolsas2.get(i);
   D2i.dibujar();
@@ -93,7 +108,18 @@ void dinero2(){
   }
  }  
 }
-
+//------------------------------------------
+ void enemigo2(){
+   image(images[imageIndex], ex, ey);//policia
+   ey+=vel_e;//mover
+   if(ey< 140){
+   imageIndex = (imageIndex+1)%images.length; 
+image(images[imageIndex], ex,ey);vel_e*=-1;
+   }else if (ey >220){
+     imageIndex = (imageIndex+1)%images.length; 
+image(images[imageIndex], ex,ey);vel_e*=-1;
+   }
+ }
 class Pared2{
  float px;
  float py;
@@ -107,6 +133,7 @@ class Pared2{
    ap=a;   
  }
  void dibujar2(){
+   noStroke();
   fill(0,0,255);
   rect(px,py,bp,ap);   
  }

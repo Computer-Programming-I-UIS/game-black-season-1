@@ -1,9 +1,11 @@
 void imp1(){
   im[0] = new impulso(85,270,30,15);
+  im[1] = new impulso(75,45,15,30);
   
 }
 void bkk(){
  bk[0]=new back(85,395,30,15); 
+ bk[1] = new back (395,45,15,30);
 }
 class impulso{
    float px;
