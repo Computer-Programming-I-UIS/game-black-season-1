@@ -1,4 +1,4 @@
-# Black Season
+﻿# Black Season
 
 Connor, nuestro personaje, debe escapar de la prisión en la que se encuentra. Black season es un juego de arcade donde el objetivo principal es recolectar la totalidad de las monedas y encontrar la salida del mapa sin ser atrapado o electrocutado, debes esquivar a los vigilantes de turno y mantenerte alejado de las paredes electrificadas. ¿podrás lograrlo?
 
@@ -46,6 +46,7 @@ Barras rojas : reinician la velocidad de movimiento incial
 
 Para mayores de 10 años
 
+![Imagen](https://github.com/Computer-Programming-I-UIS/game-black-season-1/blob/main/code/esrb.png)
 
 ## Autores
 * Santiago Vargas 2200537
