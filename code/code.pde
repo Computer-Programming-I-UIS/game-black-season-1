@@ -117,6 +117,7 @@ PImage go;
 PImage gw;
 PImage instru;
 PImage skull;
+PImage sal;
 int a;
 int b;
 //----------------------------------------------------------------------------------------------------------------
@@ -162,6 +163,7 @@ go = loadImage("game over.png");
 gw = loadImage("win.png");
 instru = loadImage("instrucciones.png");
 skull = loadImage("skull.png");
+sal = loadImage("sal.png");
 a= width -20;
 b=220;
 
@@ -300,7 +302,7 @@ void seleccionar(){
   detect();   
   pelado();
   enemigo();
-
+  image(sal,655,520,35,25); 
   for(int i=0; i< c_paredes; i++){
     p[i].dibujar();    
   }
