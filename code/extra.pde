@@ -24,7 +24,7 @@ class impulso{
  }
  void dibujar(){
    stroke(255);
-  fill(0,255,0);
+  fill(9,100,3);
   rect(px,py,bp,ap);   
  }
   
@@ -44,8 +44,8 @@ class back{
    ap=a;   
  }
  void dibujar(){
-   stroke(255);
-  fill(255,0,0);
+   
+  fill(155,3,3);
   rect(px,py,bp,ap);   
  }
   
