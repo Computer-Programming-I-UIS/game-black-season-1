@@ -72,9 +72,9 @@ int sub= 0;
 PImage [] arimage = new PImage[maxImages];
 int izq=0;
 PImage [] izimage = new PImage[maxImages];
-
-int vel=4;
-int vel_e=8;
+int e1=5;
+int vel=e1;//velocidad jugador
+int vel_e=7;//velocidad enemigo
 int r=100;
 //radio enemigo
 int re = 30; 
@@ -286,7 +286,7 @@ void seleccionar(){
   
 //-----------------------------------------  
  void play(){
-   background(#051021);
+   background(#090B2C);
    
    //cuadricula();    
   dinero();  
@@ -351,7 +351,7 @@ void instruction(){
 //MODO PERDER-----------------------------------------
 void lose(){
   background(go);
-  text("Bolsas Recolectadas...."+(255-bolsas.size()), width/2,height/2+200);
+  text("Bolsas Recolectadas...."+(510-(bolsas2.size()+bolsas.size())), width/2,height/2+200);
   if (keyPressed){
     if(key == 'M' || key == 'm'){      
      modo = "MENU";     
@@ -367,7 +367,7 @@ void lose(){
   }*/
    x= 20;
   y= 220 ;
-  vel=4;
+  vel=e1;
   
 }
 //MODO GANAR----------------------------------------- 
@@ -469,7 +469,7 @@ void colisionar(){
  if((x+c_a/2>im[i].px)&&(x<im[i].px+c_a/2+im[i].bp)&&(y+c_a/2>im[i].py)&&(y<im[i].py+c_a/2+ im[i].ap)){//Colisionar con extras
   vel=15; 
  }else if ((x+c_a/2>bk[i].px)&&(x<bk[i].px+c_a/2+bk[i].bp)&&(y+c_a/2>bk[i].py)&&(y<bk[i].py+c_a/2+ bk[i].ap)){
-  vel=4; 
+  vel=e1; 
  }
  }
 }
